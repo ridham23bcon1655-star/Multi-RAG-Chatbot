@@ -43,7 +43,9 @@ def get_text_chunks(text):
 
 #Take the textchunks and convert into embedding from google genai models
 def get_vector_store(text_chunks):
-    embedding=GoogleGenerativeAIEmbeddings(model="gemini-embedding-2-preview")
+    embedding = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
+)
     # vector_store=FAISS.from_texts(text_chunks, embedding=embedding)
     # vector_store.save_local("faiss_index")
     #embedded vectors created into local file and which we can't see
