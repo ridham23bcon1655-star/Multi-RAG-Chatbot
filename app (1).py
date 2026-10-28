@@ -91,7 +91,9 @@ def get_conversational_chain():
     return chain
 
 def user_input(user_question):
-    embeddings=GoogleGenerativeAIEmbeddings(model="gemini-embedding-2-preview")
+    embeddings = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
+)
 
     new_db=FAISS.load_local("faiss_index", embeddings,allow_dangerous_deserialization=True)
     docs=new_db.similarity_search(user_question)
